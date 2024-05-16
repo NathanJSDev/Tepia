@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='description' content='%s'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <link rel='apple-touch-icon' href='%s'>
+    <link rel='shortcut icon' href='%s'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap' rel='stylesheet'>
+    <script type='module' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js'></script>
+    <script nomodule src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js'></script>
+    <title translate="no">%s - @%s</title>
+    
+    <link rel='stylesheet' href='appstore/src/loaded-content.css'>
+    <link rel='stylesheet' href='src/loaded-content.css'> <!-- tests only -->
+</head>
+
+<body>
+    <header class="page-header">
+        <section class="header-menu non-selectable">
+            <h2>
+                <img src="%s" width="22px">
+                <small translate="no">Tepia</small>
+            </h2>
+            <menu class="menu non-selectable" type="context">
+                <li><a href="">Blog</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="http://192.168.0.105:9090/users/login">Login</a></li>
+                <li><a href="http://192.168.0.105:9090/users/sigin">Signup</a></li>
+            </menu>
+        </section>
+        <hr>
+    </header>
+    <section id="spannable_elements">
+        <div id="ata" class="app-info-about-text-complete dn modal">
+            <h2>About this app</h2>
+            <br>
+            %s
+        </div>
+    </section>
+    <main class="main">
+        <section class="app-info">
+            <header class="app-info-header">
+                <div class="app-info-header-download-area">
+                    <div translate="no">
+                        <h2 class="app-info-header-app-title">%s</h2>
+                        <small class="app-info-header-app-creator">%s</small>
+                    </div>
+                    <button class="app-info-header-download-button" type="button">R$%s0 - Download</button>
+                </div>
+                <section class="app-info-header-main">
+                    <img class="app-info-header-app-logo" src="%s">
+                </section>
+            </header>
+            <hr>
+            <!-- ------------------------------------------------------------------------------------  -->
+            <div class="app-info-about">
+                <section class="app-info-about-text">
+                    <h2>About this app</h2>
+                    <div class="app-info-about-text-organizer">
+                        <div class="app-info-about-text-summary">
+                            %s
+                        </div>
+                        <div class="app-info-about-text-complete-organizer" onclick="ata()">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </div>
+                    </div>
+                </section>
+                <section class="app-info-about-image-carroussel">
+                    <ul class="AIAICIL">
+                        <li class="AIAICIL_LI">
+                            <img src="%S" alt="">
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <!-- ------------------------------------------------------------------------------------  -->
+            <hr>
+            <div class="app-info-fd">
+                <section class="app-info-fd-feedback">
+                    <h2>Ratings and reviews</h2>
+                    <div id="ratings-graph">
+                        <div id="percent">
+                            <div>
+                                %s
+                            </div>
+                            <span>%s</span>
+                            <span class="totalRatings">
+                                %s ratings
+                            </span>
+                        </div>
+                        <div class="table-view">
+                            <div class="graph-row">
+                                <div class="rtg">5</div>
+                                <div class="bar" %s>ㅤ</div>
+                            </div>
+                            <div class="graph-row">
+                                <div class="rtg">4</div>
+                                <div class="bar" %s>ㅤ</div>
+                            </div>
+                            <div class="graph-row">
+                                <div class="rtg">3</div>
+                                <div class="bar" %s>ㅤ</div>
+                            </div>
+                            <div class="graph-row">
+                                <div class="rtg">2</div>
+                                <div class="bar" %s>ㅤ</div>
+                            </div>
+                            <div class="graph-row">
+                                <div class="rtg">1</div>
+                                <div class="bar" %s>ㅤ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+                        %s
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section>
+            <h2>Other apps sugestions</h2>
+        </section>
+    </main>
+    <footer>
+        Page footer
+    </footer>
+    <script type="text/javascript" src="appstore/src/loaded-content.js"></script>
+    <!-- <script type="text/javascript" src="src/loaded-content.js"></script> --> <!-- tests only -->
+</body>
+</html>

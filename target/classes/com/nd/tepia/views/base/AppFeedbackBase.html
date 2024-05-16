@@ -1,0 +1,35 @@
+<div class="comment">
+    <div class="comment-info">
+        <div class="comment-options-top">
+            <div class="comment-user-info">
+                <div class="user-img">
+                    <img src="%s" alt="ㅤ" width="25" >
+                </div>
+                <span translate="no">%s</span>
+            </div>
+            <div id="comment-dropper" class="o-dropper">
+                <ion-icon name="ellipsis-vertical" onclick="toggleDropper(this);" class="cod-ic">💬</ion-icon>
+                <ul class="o-dropper-items dn">
+                    <li><ion-icon name="alert-circle-outline"></ion-icon> Report</li>
+                </ul>
+            </div>
+        </div>
+        <div class="comment-info-data">
+            <span class="in-comment-user-rate">%s</span>
+            <span class="comment-date">%s</span>
+        </div>
+    </div>
+    <div class="comment-body">%s</div>
+    <div class="comment-options-bottom">
+        <div class="comment-info-bottom">
+            %s
+        </div>
+        <div class="comment-user-feedback">
+            <span>This comment is useful?</span>
+            <div class="comment-user-feedback-organize">
+                <input onclick="vote('%s',true)" type="button" value="Yes">
+                <input onclick="vote('%s',false)" type="button" value="Not">
+            </div>
+        </div>
+    </div>
+</div>
