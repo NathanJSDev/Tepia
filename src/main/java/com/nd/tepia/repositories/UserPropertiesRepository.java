@@ -1,10 +1,9 @@
 package com.nd.tepia.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.nd.tepia.entities.properties.UserProperties;
 
-public interface UserPropertiesRepository extends MongoRepository<UserProperties, Long>{
+public interface UserPropertiesRepository extends JpaRepository<UserProperties, Long>{
     
     
 }

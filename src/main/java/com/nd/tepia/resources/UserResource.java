@@ -2,12 +2,14 @@ package com.nd.tepia.resources;
 
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nd.tepia.entities.CivilUser;
 import com.nd.tepia.entities.JuridicUser;
 import com.nd.tepia.entities.User;
+import com.nd.tepia.entities.DTO.UserDTO;
 import com.nd.tepia.entities.enums.UserType;
 import com.nd.tepia.resources.formatters.UserFormatter;
 import com.nd.tepia.entities.enums.Country;
@@ -33,10 +35,11 @@ public class UserResource {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok().body(service.findAll());
+    public ResponseEntity<List<UserDTO>> findAll() {
+        List<User> users = service.findAll();
+        List<UserDTO> usersDTO = users.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(usersDTO);
     }
-    
 
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {

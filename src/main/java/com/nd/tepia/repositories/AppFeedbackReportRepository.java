@@ -1,8 +1,7 @@
 package com.nd.tepia.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.nd.tepia.entities.reports.AppFeedbackReport;
 
-public interface AppFeedbackReportRepository extends MongoRepository<AppFeedbackReport, Long>{
+public interface AppFeedbackReportRepository extends JpaRepository<AppFeedbackReport, Long>{
 }

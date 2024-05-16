@@ -37,6 +37,8 @@ public class User implements Serializable{
     private String password;
 
     private Integer country;
+    
+    private Instant lastLogin;
 
     /**
      * For convenience this property cannot be equal the email property.
@@ -49,8 +51,6 @@ public class User implements Serializable{
     */
     @Size(min = 11, max = 25)
     private String recuperationPhone;
-
-    private Instant lastLogin;
 
     /**
      * The userStatus property defines the plan the user is in, if it exists
