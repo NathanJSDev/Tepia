@@ -192,7 +192,7 @@ public class App implements Serializable {
             String base = "";
             String image = "";
             try (BufferedInputStream o = (BufferedInputStream) TepiaApplication.class
-                    .getResource("views/BaseAppViewer.html").getContent()) {
+                    .getResource("views//base/AppBase.html").getContent()) {
                 base = new String(o.readAllBytes(), StandardCharsets.UTF_8);
                 File f = new File(TepiaApplication.class.getResource("views/images/nave.png").toURI());
                 image = String.format("data:image/png;charset=utf-8;base64,%s",

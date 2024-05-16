@@ -1,13 +1,14 @@
 package com.nd.tepia.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 import com.nd.tepia.entities.App;
 import com.nd.tepia.entities.User;
 
 import java.util.List;
 
 
-public interface AppRepository extends JpaRepository<App, Long>{
+public interface AppRepository extends MongoRepository<App, Long>{
     List<App> findByName(String name);
     List<App> findByCreator(User creator);
     List<App> findByLanguagesSupport(List<Double> languagesSupport);

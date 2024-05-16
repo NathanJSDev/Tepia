@@ -7,23 +7,12 @@ public class AppFeedbackSearchFormatter {
 
     private String sk;
 
-    private Long user_id;
-    private Long app_id;
-
     public AppFeedbackSearchFormatter(){}
 
     public AppFeedbackSearchFormatter(String id, boolean value, String sk) {
         this.id = id;
         this.value = value;
         this.sk = sk;
-    }
-
-    public AppFeedbackSearchFormatter(String id, boolean value, String sk, Long user_id, Long app_id) {
-        this.id = id;
-        this.value = value;
-        this.sk = sk;
-        this.user_id = user_id;
-        this.app_id = app_id;
     }
 
     public String getId() {
@@ -50,21 +39,4 @@ public class AppFeedbackSearchFormatter {
         this.sk = sk;
     }
 
-    public Long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
-    }
-
-    public Long getApp_id() {
-        return app_id;
-    }
-
-    public void setApp_id(Long app_id) {
-        this.app_id = app_id;
-    }
-
-    
 }

@@ -1,6 +1,7 @@
 package com.nd.tepia.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,8 +20,10 @@ public class Session implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String session_key;
+    private String sessionKey;
     private Boolean active;
+
+    private LocalDateTime expires;
 
     @ManyToOne
     @JsonIgnore
@@ -30,10 +33,17 @@ public class Session implements Serializable{
 
     }
 
-    public Session(Long id, String session_key, User user) {
+    public Session(Long id, String sessionKey, User user) {
         this.id = id;
-        this.session_key = session_key;
+        this.sessionKey = sessionKey;
         this.user = user;
+    }
+
+    public Session(Long id, String sessionKey, User user, LocalDateTime expires) {
+        this.id = id;
+        this.sessionKey = sessionKey;
+        this.user = user;
+        this.expires = expires;
     }
 
     public Long getId() {
@@ -44,12 +54,12 @@ public class Session implements Serializable{
         this.id = id;
     }
 
-    public String getKey() {
-        return session_key;
+    public String getSessionKey() {
+        return sessionKey;
     }
 
-    public void setKey(String key) {
-        this.session_key = key;
+    public void setSessionKey(String key) {
+        this.sessionKey = key;
     }
 
     public Boolean isActive() {
@@ -66,6 +76,14 @@ public class Session implements Serializable{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getExpires() {
+        return expires;
+    }
+
+    public void setExpires(LocalDateTime expires) {
+        this.expires = expires;
     }
 
     public static String generateKey(){
@@ -85,7 +103,7 @@ public class Session implements Serializable{
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((session_key == null) ? 0 : session_key.hashCode());
+        result = prime * result + ((sessionKey == null) ? 0 : sessionKey.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
         return result;
     }
@@ -104,10 +122,10 @@ public class Session implements Serializable{
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (session_key == null) {
-            if (other.session_key != null)
+        if (sessionKey == null) {
+            if (other.sessionKey != null)
                 return false;
-        } else if (!session_key.equals(other.session_key))
+        } else if (!sessionKey.equals(other.sessionKey))
             return false;
         if (user == null) {
             if (other.user != null)

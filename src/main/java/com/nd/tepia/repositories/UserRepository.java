@@ -2,13 +2,14 @@ package com.nd.tepia.repositories;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 import com.nd.tepia.entities.User;
 import com.nd.tepia.entities.enums.Country;
 
 
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends MongoRepository<User, Long>{
     /**
      * Metrics only
     */

@@ -63,11 +63,11 @@ public class AppStoreResource {
 
         return ResponseEntity.ok().body(a.getPage());
     }
-    
-    
+
     @GetMapping("src/{fileName}")
     public String src(@PathVariable String fileName) {
-        try (BufferedInputStream o = (BufferedInputStream)TepiaApplication.class.getResource(String.format("views/src/%s", fileName)).getContent()){
+        try (BufferedInputStream o = (BufferedInputStream) TepiaApplication.class
+                .getResource(String.format("views/src/%s", fileName)).getContent()) {
             return new String(o.readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             return e.getMessage();
@@ -97,56 +97,63 @@ public class AppStoreResource {
     }
 
     @PostMapping("/afs")
-    public String appFeedbackSearch(@RequestBody AppFeedbackSearchFormatter entity) {
-
-        String[] uaIds = entity.getId().replace("[","").replace("]", "").split(",");
-
-        AppFeedbackPK afpk = new AppFeedbackPK();
-        afpk.setApp(aService.findById(Long.valueOf(uaIds[1])));
-        afpk.setUser(uService.findById(Long.valueOf(uaIds[0])));
-
-        AppFeedback af =  afService.findById(afpk);
-
-        System.out.println(entity.getSk());
-        System.out.println(entity.getApp_id());
-        System.out.println(entity.getUser_id());
-        
-        if(entity.value()){
-            af.plusUsefull();
-        }else{
-            af.plusNonUsefull();
+    public String appFeedbackSearch(@RequestBody AppFeedbackSearchFormatter entity) {        
+        List<Session> sessions = service.findAll();
+        Boolean hasActiveSession = false;
+        for (Session session : sessions) {
+            if (session.getSessionKey().equals(entity.getSk())) {
+                hasActiveSession = true;
+                break;
+            }
         }
         
-        afService.save(af);
+        if (hasActiveSession) {
+            String[] uaIds = entity.getId().replace("[", "").replace("]", "").split(",");
 
-        return String.valueOf(entity.value() + " / " + entity.getId());
+            AppFeedbackPK afpk = new AppFeedbackPK();
+                afpk.setApp(aService.findById(Long.valueOf(uaIds[1])));
+                afpk.setUser(uService.findById(Long.valueOf(uaIds[0])));
+
+            AppFeedback af = afService.findById(afpk);
+
+            if (entity.value()) {
+                af.plusUsefull();
+            } else {
+                af.plusNonUsefull();
+            }
+            afService.save(af);
+
+            return "Thanks for your feedback!";
+        } else {
+            return "Invalid session!";
+        }
     }
 
     private boolean needsOtherKey = true;
-    private String getNewSessionId = null;
+    private String newSessionId = null;
 
     @GetMapping("/gnsi")
-    public Session getNewSession() {
+    public Session getNewSessionWithOutUser() {
         List<Session> sessions = service.findAll();
 
         needsOtherKey = true;
-        do{
-            getNewSessionId = Session.generateKey();
+        do {
+            newSessionId = Session.generateKey();
             for (Session session : sessions) {
-                if(session.getKey() == getNewSessionId) needsOtherKey = false;
+                if (session.getSessionKey() == newSessionId)
+                    needsOtherKey = false;
             }
             break;
-        }while (needsOtherKey);
+        } while (needsOtherKey);
 
-        User def = uService.insert(new User(null, Instant.now(), getNewSessionId, getNewSessionId, getNewSessionId, UserType.UNDEFINED, Country.BRAZIL));
+        User def = uService.insert(new User(null, Instant.now(), newSessionId, newSessionId, newSessionId, UserType.UNDEFINED, Country.BRAZIL));
 
-        Session persistent_session = service.save(new Session(null, getNewSessionId, def));
+        Session persistent_session = service.save(new Session(null, newSessionId, def));
         persistent_session.setActive(true);
 
         service.save(persistent_session);
-        
+
         return persistent_session;
     }
-    
-    
+
 }
